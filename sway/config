@@ -67,8 +67,9 @@ output * bg  /home/hermes/Pictures/Wallpapers/wallhaven-lyzvdl.png fill
 # Example configuration:
 #
 exec swayidle -w \
-    timeout 300 'swaylock -f -i /home/hermes/Pictures/Wallpapers/wallhaven-1q1dgv.jpg' \
-    timeout 600 'swaymsg "output * power off"' resume 'swaymsg "output * power on"' \
+    timeout 240 'swaylock -f -i /home/hermes/Pictures/Wallpapers/wallhaven-1q1dgv.jpg' \
+    timeout 241 'swaymsg "output * power off"' resume 'swaymsg "output * power on"' \
+    timeout 300 'systemctl suspend' \
     before-sleep 'swaylock -f -i /home/hermes/Pictures/Wallpapers/wallhaven-1q1dgv.jpg'         
 
 bindsym $mod+l exec swaylock -f -i /home/hermes/Pictures/Wallpapers/wallhaven-1q1dgv.jpg
@@ -111,7 +112,7 @@ input * {
     #bindsym $mod+d exec $menu
     bindsym $mod+w exec firefox
     #bindsym $mod+s exec nautilus
-    bindsym $mod+s exec yazi
+    bindsym $mod+s exec $term -e yazi
     floating_modifier $mod normal
 
     # Reload the configuration file
