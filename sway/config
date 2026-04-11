@@ -110,8 +110,8 @@ input * {
     # Start your launcher
     #bindsym $mod+d exec $menu
     bindsym $mod+w exec firefox
-    bindsym $mod+s exec nautilus
-
+    #bindsym $mod+s exec nautilus
+    bindsym $mod+s exec yazi
     floating_modifier $mod normal
 
     # Reload the configuration file
