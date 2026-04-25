@@ -1,13 +1,13 @@
 {
     "height": 40,
     "margin-top": 0,
-    "margin-left": 10,
+    "margin-left": 0,
     "margin-bottom": 0,
-    "margin-right": 10,
+    "margin-right": 0,
 
-    "modules-left": ["custom/arch", "sway/workspaces", "sway/window"],
-    "modules-center": ["clock"],
-    "modules-right": ["backlight", "pulseaudio", "battery", "custom/power-profile", "bluetooth", "network", "sway/language", "tray"],
+    "modules-left": ["custom/arch", "custom/theme-toggle", "sway/workspaces", "sway/window"],
+    "modules-center": ["clock", "custom/weather"],
+    "modules-right": ["backlight", "pulseaudio", "battery", "idle_inhibitor", "custom/power-profile", "bluetooth", "network", "sway/language", "tray"],
 
     "sway/workspaces": {
         "format": "{icon}",
@@ -38,7 +38,10 @@
         "format-ethernet": "󰈀",
         "format-wifi": "󰖩 {essid}",
         "tooltip-format": "{ifname} via {gwaddr}",
-        "tooltip-format-wifi": "Connnected through {ifname} ({signalStrength}%)"
+        "tooltip-format-wifi": "Connnected through {ifname} ({signalStrength}%)",
+        "format-disconnected": "󰤭",
+        "format-disabled": "󰤭",
+        "on-click": "networkmanager_dmenu"
     },
 
     "sway/language": {
@@ -47,7 +50,8 @@
 
     "clock": {
         "interval": 5,
-        "format": "󰥔 {:%H:%M 󰃭 %a %Y-%m-%d}"
+        "on-click": "gnome-calendar",
+        "format": "󰥔 {:%H:%M 󰃭 %d-%m-%Y %a}"
     },
 
     "pulseaudio": {
@@ -73,10 +77,37 @@
     },
 
     "battery": {
+        "states": {
+          "warning": 30,
+          "critical": 15
+    },
         "interval": 10,
         "format-charging": "󰂄 {capacity}%",
         "format": "{icon} {capacity}%",
         "format-icons": ["󰂎", "󰁺", "󰁻", "󰁼", "󰁽", "󰁿", "󰂀", "󰂂", "󰁹"]
+    },
+    
+    "custom/weather": {
+    "exec": "/home/hermes/.config/waybar/weather.sh",
+    "interval": 600,
+    "tooltip": false,
+    "on-click": "gnome-weather"
+    },
+
+    "custom/theme-toggle": {
+    "format": "{}",
+    "exec": "gsettings get org.gnome.desktop.interface color-scheme | grep -q dark && echo '☀️' || echo '🌙'",
+    "interval": 2,
+    "on-click": "~/.config/waybar/toggle-theme.sh",
+    "tooltip": false
+    },
+
+    "idle_inhibitor": {
+    "format": "{icon}",
+    "format-icons": {
+        "activated": "☕",
+        "deactivated": "🖥️"
     }
+}
 }
 
